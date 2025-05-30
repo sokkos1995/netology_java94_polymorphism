@@ -47,5 +47,25 @@ public class Main {
 
         int delta = firstCompany.applyDeals(deals);
         System.out.println("Разницa доходов и расходов на момент старта уплаты налогов " + delta);
+
+        System.out.println("Проверка на некорректный ввод");
+        try {
+            deals[0] = new Sale(20, 20, "телефон");
+            delta = firstCompany.applyDeals(deals);     
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            deals[0] = new Sale(-20, 0, "телефон");
+            delta = firstCompany.applyDeals(deals);     
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }        
+        try {
+            deals[0] = new Expenditure(0, -20, "телефон");
+            delta = firstCompany.applyDeals(deals);     
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }           
     }
 }
